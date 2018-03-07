@@ -1,5 +1,5 @@
 {
-  "name": "express",
+  "name": "expressserver",
   "version": "1.0.0",
   "description": "HTTP SErver",
   "main": "index.js",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/HarryWho/express/issues"
   },
-  "homepage": "https://github.com/HarryWho/express#readme"
+  "homepage": "https://github.com/HarryWho/express#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
