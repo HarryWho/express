@@ -1,7 +1,7 @@
 
 const express= require('express');
 const api=express.Router();
-
+const Ninja = require('../models/ninja');
 // get request for a list of ninjas
 api.get('/ninjas', (req, res)=>{
     res.send({type: 'GET'});
@@ -10,8 +10,10 @@ api.get('/ninjas', (req, res)=>{
 
   //post request to add a ninja
 api.post('/ninjas', (req, res)=>{
-    console.log(JSON.parse(req.body));
-    res.send({type: 'POST'});
+    Ninja.create(req.body).then((ninja)=>{
+        res.send(ninja);
+    });
+    
   });
   
   // put request to update a ninja

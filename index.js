@@ -1,13 +1,23 @@
 const express=require('express');
-const app=express();
-const handlebars = require('express-handlebars').create({defaultLayout:'main'});
-// const bodyParser = require('body-parser');
 
-app.use(require('body-parser').raw());
+const handlebars = require('express-handlebars').create({defaultLayout:'main'});
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const app=express();
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.static(__dirname+'/public'));
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
+
+// conect to mogodb
+mongoose.connect('mongodb://localhost/nijago'); 
+mongoose.Promise = global.Promise;
 
 app.use('/', require('./routes/index'));
 app.use('/api', require('./routes/api'));
