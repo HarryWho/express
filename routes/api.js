@@ -6,9 +6,11 @@ const api=express.Router();
 api.get('/ninjas', (req, res)=>{
     res.send({type: 'GET'});
   });
-  
+   
+
   //post request to add a ninja
 api.post('/ninjas', (req, res)=>{
+    console.log(JSON.parse(req.body));
     res.send({type: 'POST'});
   });
   
@@ -19,6 +21,6 @@ api.put('/ninjas/:id', (req, res)=>{
   
   // delete request to delete a ninja
 api.delete('/ninjas/:id', (req, res)=>{
-    res.send({type: 'DELETE'});
+    res.send({id: req.id});
   });
 module.exports = api;
