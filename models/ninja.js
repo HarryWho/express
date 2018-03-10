@@ -1,5 +1,24 @@
 const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
+mongoose.Promise = require('bluebird');
+
+
+// "geometry":{
+//     "type":"point",
+//     "coordinates":[125.6,10.1]
+// };
+// create geolocation schema
+
+const GeoSchema = new Schema({
+    type :{
+        type:String,
+        default:"Point"
+    },
+    coordinates:{
+        type:[Number],
+        index:"2dsphere"
+    }
+});
 
 // create nija schema and model
 const NinjaSchema = new Schema({
@@ -13,8 +32,8 @@ const NinjaSchema = new Schema({
     available: {
         type:Boolean,
         default:false
-    }
-    // add geo location data
+    },
+    "geometry":GeoSchema
 
 });
 
